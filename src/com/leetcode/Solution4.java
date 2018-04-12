@@ -1,7 +1,9 @@
 package com.leetcode;
 
+import java.util.HashSet;
+
 /**
- * @  只出现一次的数字
+ * @ 只出现一次的数字
  */
 public class Solution4 {
     public int singleNumber(int[] nums) {
@@ -12,7 +14,7 @@ public class Solution4 {
             }
 
         }
-        return nums[nums.length-1];
+        return nums[nums.length - 1];
     }
 
     //快速排序
@@ -37,5 +39,20 @@ public class Solution4 {
             quickSort(left, j - 1, nums);
             quickSort(i + 1, right, nums);
         }
+    }
+
+    public int singleNumber1(int[] nums) {
+        HashSet<Integer> set = new HashSet();
+        int result = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (!set.add(nums[i])) {
+                set.remove(nums[i]);
+            }
+        }
+        for (int single : set) {
+            result = single;
+        }
+
+        return result;
     }
 }
